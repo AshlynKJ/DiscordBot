@@ -24,6 +24,10 @@ export async function DiscordRequest(endpoint, options) {
   return res;
 }
 
+export function yesno() {
+  return Math.random() < 0.5 ? 'yes' : 'no';
+}
+
 export async function InstallGlobalCommands(appId, commands) {
   // API endpoint to overwrite global commands
   const endpoint = `applications/${appId}/commands`;

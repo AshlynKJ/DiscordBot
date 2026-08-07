@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import {yesno} from './utils.js';
 import {
   ButtonStyleTypes,
   InteractionResponseFlags,
@@ -37,8 +38,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
 
-    // "Hi" command
-    if (name === 'Hi') {
+    // "hi" command
+    if (name === 'hi') {
       // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -48,6 +49,23 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
               content: `Hi there!`
+            }
+          ]
+        },
+      });
+    }
+
+    // "shouldi" command
+    if (name === 'shouldi') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `${yesno()}`
             }
           ]
         },
