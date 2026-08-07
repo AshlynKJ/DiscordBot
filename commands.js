@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import InstallGlobalCommands from './utils.js';
 
 const HI_COMMAND = {
   name: 'Hi',
