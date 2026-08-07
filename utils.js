@@ -25,7 +25,15 @@ export async function DiscordRequest(endpoint, options) {
 }
 
 export function yesno() {
-  return Math.random() < 0.5 ? 'yes' : 'no';
+  return Math.random() < 0.5 ? 'Yes' : 'No';
+}
+
+export function rightleft() {
+  return Math.random() < 0.5 ? 'Right' : 'Left';
+}
+
+export function d6() {
+  return Math.floor(Math.random() * 6) + 1;
 }
 
 export async function InstallGlobalCommands(appId, commands) {

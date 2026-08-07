@@ -17,5 +17,22 @@ const SHOULDI_COMMAND = {
   contexts: [0, 1, 2],
 };
 
-const ALL_COMMANDS = [HI_COMMAND, SHOULDI_COMMAND];
+const ROLL_D6_COMMAND = {
+  name: 'rolld6',
+  description: 'Roll a six-sided die',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+const RIGHTORLEFT_COMMAND = {
+  name: 'rightorleft',
+  description: 'Direct the user to go right or left', 
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+
+const ALL_COMMANDS = [HI_COMMAND, SHOULDI_COMMAND, ROLL_D6_COMMAND, RIGHTORLEFT_COMMAND];
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

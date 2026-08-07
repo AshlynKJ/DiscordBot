@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import {yesno} from './utils.js';
+import {yesno, d6, rightleft} from './utils.js';
 import {
   ButtonStyleTypes,
   InteractionResponseFlags,
@@ -66,6 +66,40 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
               content: `${yesno()}`
+            }
+          ]
+        },
+      });
+    }
+
+    // "rolld6" command
+    if (name === 'rolld6') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `${d6()}`
+            }
+          ]
+        },
+      });
+    }
+
+    // "rightorleft" command
+    if (name === 'rightorleft') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `${rightleft()}`
             }
           ]
         },
