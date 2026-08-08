@@ -33,6 +33,22 @@ const RIGHTORLEFT_COMMAND = {
   contexts: [0, 1, 2],
 };
 
+const IDK_COMMAND = {
+  name: 'idk',
+  description: 'For when you don\'t know what command to use',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
 
-const ALL_COMMANDS = [HI_COMMAND, SHOULDI_COMMAND, ROLL_D6_COMMAND, RIGHTORLEFT_COMMAND];
+const IDKSPECIAL_COMMAND = {
+  name: 'idkspecial',
+  description: 'For when you don\'t know what command to use but special',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+
+const ALL_COMMANDS = [HI_COMMAND, SHOULDI_COMMAND, ROLL_D6_COMMAND, RIGHTORLEFT_COMMAND, IDK_COMMAND, IDKSPECIAL_COMMAND];
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

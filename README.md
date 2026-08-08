@@ -1,17 +1,21 @@
-# DiscordBot
-A decision making bot application for discord.
-If you can't make a decison ask the bot.
+# DiscordBot <br/>
+A decision making bot application for discord. <br/>
+If you can't make a decison ask the bot. <br/>
 
-Commands:
-/hi 
-    Bot responds to your greeting with "Hi there!"
+Commands: <br/>
+-/hi <br/>
+    Bot responds to your greeting with "Hi there!" <br/>
 
-/shouldi
-    Randomly asnswers with yes or know with a 50/50 probability.
+-/shouldi <br/>
+    Randomly asnswers with yes or know with a 50/50 probability. <br/>
 
-/rolld6
-    Randomly responds with a number between 1 and 6 like rolling a 6-sided die.
+-/rolld6 <br/>
+    Randomly responds with a number between 1 and 6 like rolling a 6-sided die. <br/>
 
-/rightorleft
-    Randomly responds with the direction right or left with a 50/50 probability. 
+-/rightorleft <br/>
+    Randomly responds with the direction right or left with a 50/50 probability. <br/>
 
+-/idk <br/>
+    Randomly tells you which command you should use <br/>
+-/idkspecial <br/>
+    Randomly uses a different command. <br/>

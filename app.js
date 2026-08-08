@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import {yesno, d6, rightleft} from './utils.js';
+import {yesno, d6, rightleft, randomcommand, rcutil} from './utils.js';
 import {
   ButtonStyleTypes,
   InteractionResponseFlags,
@@ -100,6 +100,40 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
               content: `${rightleft()}`
+            }
+          ]
+        },
+      });
+    }
+
+    // "idk" command
+    if (name === 'idk') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `Use /${randomcommand()}`
+            }
+          ]
+        },
+      });
+    }
+
+    // "idkspecial" command
+    if (name === 'idkspecial') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `${rcutil()}`
             }
           ]
         },

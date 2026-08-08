@@ -36,6 +36,31 @@ export function d6() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
+export function randomcommand() {
+  const commands = ['hi', 'shouldi', 'rolld6', 'rightorleft', 'idk'];
+  return commands[Math.floor(Math.random() * commands.length)];
+}
+
+function rc() {
+  const commands = ['hi', 'shouldi', 'rolld6', 'rightorleft', 'idk'];
+  return commands[Math.floor(Math.random() * commands.length)];
+}
+
+export function rcutil() {
+  const command = rc();
+  if (command === 'hi') {
+    return `Hi there!`;
+  } else if (command === 'shouldi') {
+    return `${yesno()}`;
+  } else if (command === 'rolld6') {
+    return `${d6()}`;
+  } else if (command === 'rightorleft') {
+    return `${rightleft()}`;
+  } else {
+    return `Use /${rc()}`;
+  }
+}
+
 export async function InstallGlobalCommands(appId, commands) {
   // API endpoint to overwrite global commands
   const endpoint = `applications/${appId}/commands`;

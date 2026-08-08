@@ -2,7 +2,7 @@
   "name": "discordBotAsh",
   "private": true,
   "version": "1.0.0",
-  "description": "Discord bot",
+  "description": "Discord decision bot",
   "main": "app.js",
   "type": "module",
   "engines": {
