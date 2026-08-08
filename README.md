@@ -16,7 +16,7 @@ If you can't make a decison ask the bot. <br/>
     Randomly responds with the direction right or left with a 50/50 probability. <br/>
 
 /idk <br/>
-    Randomly tells you which command you should use <br/>
+    Randomly tells you which command you should use. <br/>
     
 /idkspecial <br/>
     Randomly uses a different command. <br/>
