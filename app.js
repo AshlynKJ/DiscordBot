@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
-import {yesno, d6, rightleft, randomcommand, rcutil} from './utils.js';
+import {yesno, d6, rightleft, randomcommand, rcutil} from './functions.js';
 import {
-  ButtonStyleTypes,
   InteractionResponseFlags,
   InteractionResponseType,
   InteractionType,
@@ -10,37 +9,33 @@ import {
   verifyKeyMiddleware,
 } from 'discord-interactions';
 
-// Create an express app
+/*
+*Create an express app and desginate port, defult is 3000.
+*/
 const app = express();
-// Get port, or default to 3000
 const PORT = process.env.PORT || 3000;
-// To keep track of our active games
-const activeGames = {};
 
-/**
- * Interactions endpoint URL where Discord will send HTTP requests
- * Parse request body and verifies incoming requests using discord-interactions package
+/*
+ * For sending and verifying requests.
  */
 app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async function (req, res) {
-  // Interaction id, type and data
   const { id, type, data } = req.body;
 
-  /**
-   * Handle verification requests
+  /*
+   * For the varification requests.
    */
   if (type === InteractionType.PING) {
     return res.send({ type: InteractionResponseType.PONG });
   }
 
   /**
-   * Handle slash command requests
+   * For slash command requests.
    */
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
 
     // "hi" command
     if (name === 'hi') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -57,7 +52,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "shouldi" command
     if (name === 'shouldi') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -74,7 +68,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "rolld6" command
     if (name === 'rolld6') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -91,7 +84,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "rightorleft" command
     if (name === 'rightorleft') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -108,7 +100,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "idk" command
     if (name === 'idk') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
@@ -125,7 +116,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
     // "idkspecial" command
     if (name === 'idkspecial') {
-      // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {

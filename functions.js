@@ -1,11 +1,11 @@
 import 'dotenv/config';
 
+/*
+ * For the discord API.
+ */
 export async function DiscordRequest(endpoint, options) {
-  // append endpoint to root API URL
   const url = 'https://discord.com/api/v10/' + endpoint;
-  // Stringify payloads
   if (options.body) options.body = JSON.stringify(options.body);
-  // Use fetch to make requests
   const res = await fetch(url, {
     headers: {
       Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
@@ -14,38 +14,54 @@ export async function DiscordRequest(endpoint, options) {
     },
     ...options
   });
-  // throw API errors
   if (!res.ok) {
     const data = await res.json();
     console.log(res.status);
     throw new Error(JSON.stringify(data));
   }
-  // return original response
   return res;
 }
 
+/*
+*Funct for the yesNo command, returns yes or no randomly.
+*/
 export function yesno() {
   return Math.random() < 0.5 ? 'Yes' : 'No';
 }
 
+/*
+*Funct for the rightLeft command, returns right or left randomly.
+*/
 export function rightleft() {
   return Math.random() < 0.5 ? 'Right' : 'Left';
 }
 
+/*
+*Funct for the rollD6 command, returns a random number between 1 and 6.
+*/
 export function d6() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
+/*
+*Funct for the idk command, returns a random command from the list.
+*/
 export function randomcommand() {
   const commands = ['hi', 'shouldi', 'rolld6', 'rightorleft', 'idk'];
   return commands[Math.floor(Math.random() * commands.length)];
 }
 
+/*
+*Funct for the random command utility, returns a random command and its response.
+*/
 function rc() {
   const commands = ['hi', 'shouldi', 'rolld6', 'rightorleft', 'idk'];
   return commands[Math.floor(Math.random() * commands.length)];
 }
 
+/*
+*Funct for the idk special command, returns a random command's response.
+*/
 export function rcutil() {
   const command = rc();
   if (command === 'hi') {
@@ -61,12 +77,13 @@ export function rcutil() {
   }
 }
 
-export async function InstallGlobalCommands(appId, commands) {
-  // API endpoint to overwrite global commands
+/*
+* Uses Put to overwrite the global comand list with provided commands.
+ */
+export async function GlobalCommands(appId, commands) {
   const endpoint = `applications/${appId}/commands`;
 
   try {
-    // This is calling the bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
     await DiscordRequest(endpoint, { method: 'PUT', body: commands });
   } catch (err) {
     console.error(err);
