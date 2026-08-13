@@ -23,6 +23,25 @@ export async function DiscordRequest(endpoint, options) {
 }
 
 /*
+ * For the pokemon API.
+ */
+async function PokeRequest(endpoint) {
+  const url = 'https://pokeapi.co/api/v2/' + endpoint;
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  });
+  if (!res.ok) {
+    const data = await res.json();
+    console.log(res.status);
+    throw new Error(JSON.stringify(data));
+  }
+  return await res.json();
+}
+
+/*
 *Funct for the yesNo command, returns yes or no randomly.
 */
 export function yesno() {
@@ -76,6 +95,19 @@ export function rcutil() {
     return `Use /${rc()}`;
   }
 }
+
+export async function showDitto() {
+  const data = await PokeRequest('pokemon/ditto');
+  
+  return(data.sprites.front_default); 
+}
+
+export async function showimage(input) {
+  const safeInput = String(input).toLowerCase();
+  const data = await PokeRequest(`pokemon/${safeInput}`);
+  return(data.sprites.front_default);
+}
+
 
 /*
 * Uses Put to overwrite the global comand list with provided commands.

@@ -55,6 +55,51 @@ const IDKSPECIAL_COMMAND = {
   contexts: [0, 1, 2],
 };
 
+const DITTO_COMMAND = {
+  name: 'ditto',
+  description: 'ditto',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
 
-const ALL_COMMANDS = [HI_COMMAND, SHOULDI_COMMAND, ROLL_D6_COMMAND, RIGHTORLEFT_COMMAND, IDK_COMMAND, IDKSPECIAL_COMMAND];
+
+const TEST_COMMAND = {
+  name: 'test',
+  description: 'Replies with your input!',
+  options: [
+    {
+      "name": "input",
+      "description": "The input to echo back",
+      "type": 3, 
+      "required": true
+    }
+  ],
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+
+const IMAGE_COMMAND = {
+  name: 'image',
+  description: 'Display the image of a Pokémon',
+  options: [
+    {
+      "name": "pkmn",
+      "description": "Name of the Pokémon to display",
+      "type": 3, 
+      "required": true
+    }
+  ],
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+
+
+
+
+const ALL_COMMANDS = [TEST_COMMAND, SHOULDI_COMMAND, ROLL_D6_COMMAND, RIGHTORLEFT_COMMAND, IDK_COMMAND, IDKSPECIAL_COMMAND, DITTO_COMMAND, IMAGE_COMMAND, HI_COMMAND];
 GlobalCommands(process.env.APP_ID, ALL_COMMANDS);
