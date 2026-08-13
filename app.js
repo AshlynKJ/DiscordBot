@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import {yesno, d6, rightleft, randomcommand, rcutil} from './functions.js';
+import {yesno, d6, rightleft, randomcommand, rcutil, showDitto, showimage} from './functions.js';
 import {
   InteractionResponseFlags,
   InteractionResponseType,
@@ -129,6 +129,52 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         },
       });
     }
+
+    // "ditto" command
+    if (name === 'ditto') {
+      return async function() {
+        const dittoData = await showDitto();
+        const safeContent = dittoData.slice(0, 1900); 
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: safeContent
+          },
+        });
+      }();
+    }
+
+    // "test" command
+    if (name === 'test') {
+      const userInput = req.body.data.options?.find(opt => opt.name === 'input')?.value || 'No input provided';
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: `You said: ${userInput}`
+            }
+          ]
+        },
+      });
+    }
+    
+    // "image" command
+    if (name === 'image') {
+      const userInput = req.body.data.options?.find(opt => opt.name === 'pkmn')?.value
+      return async function() {
+        const imageData = await showimage(userInput);
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: imageData
+          },
+        });
+      }();
+    }
+
 
     console.error(`unknown command: ${name}`);
     return res.status(400).json({ error: 'unknown command' });
