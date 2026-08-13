@@ -20,3 +20,12 @@ If you can't make a decison ask the bot. <br/>
     
 /idkspecial <br/>
     Randomly uses a different command. <br/>
+
+/ditto <br/>
+    Posts an image of the Pokemon Ditto. <br/>
+    
+/test (input)<br/>
+    Echos back the users text input. <br/>
+
+/image (input)<br/>
+    Posts an image of the Pokemon with the name specified by the user's text input. <br/>
