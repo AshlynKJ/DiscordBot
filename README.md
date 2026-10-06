@@ -1,6 +1,7 @@
 # DiscordBot <br/>
-A decision making bot application for discord. <br/>
-If you can't make a decison ask the bot. <br/>
+A bot application for discord. <br/>
+It includes several decision making commands and commands involving Pokemon. <br/>
+The list of included commands is listed below. <br/>
 
 **Commands:** <br/>
 /hi <br/>
